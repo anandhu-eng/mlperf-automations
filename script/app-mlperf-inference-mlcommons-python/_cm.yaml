@@ -490,6 +490,17 @@ deps:
       CM_ML_MODEL_RGAT_CHECKPOINT_PATH:
         - 'on'
 
+  ## LLAMA3-402B
+  - tags: get,ml-model,llama3
+    names:
+    - llama3-402b-model
+    enable_if_env:
+      CM_MODEL:
+      - llama3-402b
+    skip_if_env:
+      CM_ML_MODEL_LLAMA3_CHECKPOINT_PATH:
+        - 'on'
+
   ########################################################################
   # Install datasets
 
@@ -612,15 +623,14 @@ deps:
       - on
 
   ## igbh for rgat
-  - tags: get,dataset,mlperf,inference,igbh
+  - tags: get,dataset,mlperf,inference,llama3,_validation
     names:
-    - igbh-dataset
-    - illinois-graph-benchmark-heterogeneous
+    - llama3-dataset
     enable_if_env:
       CM_MODEL:
-      - rgat
+      - llama3-402b
     skip_if_env:
-      CM_DATASET_IGBH_PATH:
+      CM_DATASET_LLAMA3_PATH:
       - "on"
 
   ########################################################################
@@ -1265,6 +1275,24 @@ variations:
         env:
           CM_GENERIC_PYTHON_PIP_EXTRA_FIND_LINKS_URL: "https://data.pyg.org/whl/torch-<<<CM_TORCH_VERSION>>>+cpu.html"
       - tags: get,generic-python-lib,_package.dgl,_find_links_url.https://data.dgl.ai/wheels/torch-2.1/repo.html
+
+  llama3-402b:
+    group: models
+    env:
+      CM_MODEL: llama3-402b
+    deps:
+      - tags: get,generic-python-lib,_package.torchvision
+      - tags: get,generic-python-lib,_package.torchaudio
+      - tags: get,generic-python-lib,_package.transformers
+      - tags: get,generic-python-lib,_package.nltk
+      - tags: get,generic-python-lib,_package.evaluate
+      - tags: get,generic-python-lib,_package.absl-py
+      - tags: get,generic-python-lib,_package.rouge-score
+      - tags: get,generic-python-lib,_package.sentencepiece
+      - tags: get,generic-python-lib,_package.accelerate
+      - tags: get,generic-python-lib,_package.vllm
+      - tags: get,generic-python-lib,_package.pybind11
+      - tags: get,generic-python-lib,_package.numpy
 
   # Target devices
   cpu:
