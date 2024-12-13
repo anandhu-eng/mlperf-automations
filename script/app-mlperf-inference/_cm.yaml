@@ -431,6 +431,11 @@ variations:
            - 20.04
         docker:
           extra_run_args: ' --runtime=nvidia --ulimit memlock=-1 --cap-add SYS_ADMIN --cap-add SYS_TIME --security-opt apparmor=unconfined --security-opt seccomp=unconfined'
+      - enable_if_env:
+         CM_CONTAINER_TOOL: 
+           - podman
+        docker:
+          extra_run_args: ' --runtime=nvidia --cap-add SYS_ADMIN --cap-add SYS_TIME --security-opt apparmor=unconfined --security-opt seccomp=unconfined'
 
     default_variations:
       backend: tensorrt
