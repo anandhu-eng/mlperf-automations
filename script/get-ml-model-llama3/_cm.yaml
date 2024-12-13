@@ -51,6 +51,15 @@ variations:
       CM_GIT_CHECKOUT_FOLDER: <<<CM_LLAMA3_MODEL_DOWNLOAD_PATH>>>/Llama-3-405b-instruct
       CM_MODEL_ZOO_ENV_KEY: LLAMA3
     group: huggingface-stub
+  meta-llama/Llama-3.1-8B-Instruct:
+    adr:
+      hf-zoo:
+        tags: _model-stub.meta-llama/Llama-3.1-8B-Instruct
+    default: true
+    env:
+      CM_GIT_CHECKOUT_FOLDER: <<<CM_LLAMA3_MODEL_DOWNLOAD_PATH>>>/Llama-3-8b-instruct
+      CM_MODEL_ZOO_ENV_KEY: LLAMA3
+    group: huggingface-stub
   vllm:
     default: true
     env:
