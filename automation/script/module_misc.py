@@ -1984,6 +1984,11 @@ def docker(i):
     if r['return'] > 0:
         return r
 
+    if "env" in r:
+        for key, value in r["env"].items():
+            if key not in env:
+                env[key] = value
+                
     for artifact in sorted(lst, key=lambda x: x.meta.get('alias', '')):
 
         meta = artifact.meta
