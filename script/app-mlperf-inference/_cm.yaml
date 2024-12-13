@@ -425,13 +425,25 @@ variations:
  
     update_meta_if_env:
       - enable_if_env:
+         CM_CONTAINER_TOOL: 
+           - podman
+        docker:
+          extra_run_args: ' --cap-add SYS_ADMIN --cap-add SYS_TIME --security-opt apparmor=unconfined --security-opt seccomp=unconfined'
+      - enable_if_env:
          CM_HOST_OS_FLAVOR: 
            - ubuntu
          CM_HOST_OS_VERSION:
            - 20.04
+        skip_if_env:
+         CM_CONTAINER_TOOL: 
+           - podman
         docker:
           extra_run_args: ' --runtime=nvidia --ulimit memlock=-1 --cap-add SYS_ADMIN --cap-add SYS_TIME --security-opt apparmor=unconfined --security-opt seccomp=unconfined'
       - enable_if_env:
+         CM_HOST_OS_FLAVOR: 
+           - ubuntu
+         CM_HOST_OS_VERSION:
+           - 20.04
          CM_CONTAINER_TOOL: 
            - podman
         docker:
@@ -1817,6 +1829,12 @@ docker:
   cm_repo_branch: mlperf-inference
   real_run: False
   os_version: '22.04'
+  update_meta_if_env:
+      - enable_if_env:
+         CM_CONTAINER_TOOL: 
+           - podman
+        docker:
+          extra_run_args: ' --runtime=nvidia --cap-add SYS_ADMIN --cap-add SYS_TIME --security-opt apparmor=unconfined --security-opt seccomp=unconfined'
   docker_input_mapping:
     imagenet_path: IMAGENET_PATH
     gptj_checkpoint_path: GPTJ_CHECKPOINT_PATH
