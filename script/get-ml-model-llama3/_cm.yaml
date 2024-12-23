@@ -86,7 +86,6 @@ docker:
   os: ubuntu
   cm_repo: mlcommons@mlperf-automations
   cm_repo_branch: llm
-  real_run: False
   os_version: '22.04'
   docker_input_mapping:
     outdirname: CM_OUTDIRNAME
