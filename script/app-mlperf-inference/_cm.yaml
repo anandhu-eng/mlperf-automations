@@ -260,7 +260,7 @@ variations:
     default_variations:
       backend: pytorch
   
-  reference,llama3-405b:
+  reference,llama3.1-405b:
     default_variations:
       backend: pytorch
 
@@ -786,15 +786,15 @@ variations:
       - rgat-accuracy-script
       tags: run,accuracy,mlperf,_igbh
   
-  llama3-405b:
+  llama3.1-405b:
     group:
       model
     add_deps_recursive:
       mlperf-inference-implementation:
-        tags: _llama3-405b
+        tags: _llama3.1-405b
     env:
       CM_MODEL:
-        llama3-405b
+        llama3.1-405b
     posthook_deps:
     - enable_if_env:
         CM_MLPERF_LOADGEN_MODE:
@@ -807,7 +807,7 @@ variations:
         - nvidia
       names:
       - mlperf-accuracy-script
-      - llama3-405b-accuracy-script
+      - llama3.1-405b-accuracy-script
       # tags: run,accuracy,mlperf,_llama3
 
   sdxl:
