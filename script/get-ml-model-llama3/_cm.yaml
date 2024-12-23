@@ -55,7 +55,6 @@ variations:
     adr:
       hf-zoo:
         tags: _model-stub.meta-llama/Llama-3.1-8B-Instruct
-    default: true
     env:
       CM_GIT_CHECKOUT_FOLDER: <<<CM_LLAMA3_MODEL_DOWNLOAD_PATH>>>/Llama-3-8b-instruct
       CM_MODEL_ZOO_ENV_KEY: LLAMA3
