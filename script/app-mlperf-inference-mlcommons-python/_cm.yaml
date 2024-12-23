@@ -490,13 +490,13 @@ deps:
       CM_ML_MODEL_RGAT_CHECKPOINT_PATH:
         - 'on'
 
-  ## LLAMA3-402B
+  ## LLAMA3.1-405B
   - tags: get,ml-model,llama3
     names:
-    - llama3-402b-model
+    - llama3.1-405b-model
     enable_if_env:
       CM_MODEL:
-      - llama3-402b
+      - llama3.1-405b
     skip_if_env:
       CM_ML_MODEL_LLAMA3_CHECKPOINT_PATH:
         - 'on'
@@ -622,13 +622,13 @@ deps:
       CM_CRITEO_PREPROCESSED_PATH:
       - on
 
-  ## igbh for rgat
+  ## llama3.1 dataset
   - tags: get,dataset,mlperf,inference,llama3,_validation
     names:
-    - llama3-dataset
+    - llama3.1-dataset
     enable_if_env:
       CM_MODEL:
-      - llama3-402b
+      - llama3.1-405b
     skip_if_env:
       CM_DATASET_LLAMA3_PATH:
       - "on"
@@ -1276,10 +1276,10 @@ variations:
           CM_GENERIC_PYTHON_PIP_EXTRA_FIND_LINKS_URL: "https://data.pyg.org/whl/torch-<<<CM_TORCH_VERSION>>>+cpu.html"
       - tags: get,generic-python-lib,_package.dgl,_find_links_url.https://data.dgl.ai/wheels/torch-2.1/repo.html
 
-  llama3-402b:
+  llama3.1-405b:
     group: models
     env:
-      CM_MODEL: llama3-402b
+      CM_MODEL: llama3.1-405b
     deps:
       - tags: get,generic-python-lib,_package.torchvision
       - tags: get,generic-python-lib,_package.torchaudio
