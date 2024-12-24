@@ -50,6 +50,7 @@ variations:
     env:
       CM_DOWNLOAD_FILENAME: checkpoint
       CM_DOWNLOAD_URL: <<<CM_RCLONE_URL>>>
+      CM_RCLONE_CONFIG_NAME: mlc-inference
     group: download-tool
 print_env_at_the_end:
   CM_DATASET_LLAMA3_PATH: Path to the dataset
