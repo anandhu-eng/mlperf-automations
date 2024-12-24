@@ -493,7 +493,7 @@ deps:
   ## LLAMA3.1-405B
   - tags: get,ml-model,llama3
     names:
-    - llama3.1-405b-model
+    - llama3-405b-model
     enable_if_env:
       CM_MODEL:
       - llama3.1-405b
