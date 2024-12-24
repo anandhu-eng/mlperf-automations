@@ -1294,6 +1294,18 @@ variations:
       - tags: get,generic-python-lib,_package.pybind11
       - tags: get,generic-python-lib,_package.numpy
 
+  llama3.1-405b,cuda:
+    deps:
+      - tags: get,generic-python-lib,_package.torch-geometric
+        env:
+          CM_GENERIC_PYTHON_PIP_EXTRA_FIND_LINKS_URL: "https://data.pyg.org/whl/torch-<<<CM_TORCH_VERSION>>>.html"
+
+  llama3.1-405b,cpu:
+    deps:
+      - tags: get,generic-python-lib,_package.torch-geometric
+        env:
+          CM_GENERIC_PYTHON_PIP_EXTRA_FIND_LINKS_URL: "https://data.pyg.org/whl/torch-<<<CM_TORCH_VERSION>>>+cpu.html"
+
   # Target devices
   cpu:
     group: device
