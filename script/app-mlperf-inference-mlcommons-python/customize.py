@@ -517,7 +517,7 @@ def get_run_cmd_reference(
             " --model-path " + env['CM_ML_MODEL_LLAMA3_CHECKPOINT_PATH'] + \
             " --vllm "
         
-        cmd = cmd.replace("--count", "--total-sample-count")
+        cmd = cmd.replace("--output-log-dir", "--output")
         
 
     if env.get('CM_NETWORK_LOADGEN', '') in ["lon", "sut"]:
