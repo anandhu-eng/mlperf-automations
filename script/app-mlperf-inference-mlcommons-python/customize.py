@@ -503,6 +503,9 @@ def get_run_cmd_reference(
             env['CM_MLPERF_INFERENCE_SOURCE'],
             "graph",
             "R-GAT")
+
+        #rename float to fp
+        env['CM_MLPERF_MODEL_PRECISION'] = env['CM_MLPERF_MODEL_PRECISION'].replace('float', 'fp')
         
         cmd = env['CM_PYTHON_BIN_WITH_PATH'] + " main.py " \
             " --scenario " + env['CM_MLPERF_LOADGEN_SCENARIO'] + \
