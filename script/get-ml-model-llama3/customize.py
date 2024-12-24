@@ -19,7 +19,7 @@ def preprocess(i):
 def postprocess(i):
 
     env = i['env']
-    if env.get('LLAMA3_CHECKPOINT_PATH', '') == '':
+    if env.get('CM_TMP_REQUIRE_DOWNLOAD', '') == 'yes':
         env['LLAMA3_CHECKPOINT_PATH'] = env['CM_ML_MODEL_PATH']
     else:
         env['CM_ML_MODEL_PATH'] = env['LLAMA3_CHECKPOINT_PATH']
