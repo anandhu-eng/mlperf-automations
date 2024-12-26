@@ -2,12 +2,12 @@ name: MLPerf inference SDXL (SCC)
 
 on:
   schedule:
-    - cron: "00 06 * * *"
+    - cron: "40 06 * * *"
 
 jobs:
   build_reference:
     if: github.repository_owner == 'anandhu-eng'
-    runs-on: [ self-hosted, Linux, X64, h1000 ]
+    runs-on: [ self-hosted, Linux, X64, h100 ]
     env:
       CM_REPOS: $HOME/actions-runner/GH_CM
     strategy:
