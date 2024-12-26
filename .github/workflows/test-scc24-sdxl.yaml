@@ -2,12 +2,12 @@ name: MLPerf inference SDXL (SCC)
 
 on:
   schedule:
-    - cron: "20 01 * * *"
+    - cron: "45 04 * * *"
 
 jobs:
   build_reference:
-    if: github.repository_owner == 'gateoverflow'
-    runs-on: [ self-hosted, linux, x64, GO-spr ]
+    if: github.repository_owner == 'anandhu-eng'
+    runs-on: [ self-hosted, Linux, X64, test-server ]
     env:
       CM_REPOS: $HOME/GH_CM
     strategy:
@@ -33,7 +33,7 @@ jobs:
         cm run script --tags=push,github,mlperf,inference,submission --repo_url=https://github.com/gateoverflow/cm4mlperf-inference --repo_branch=mlperf-inference-results-scc24 --commit_message="Results from self hosted Github actions - NVIDIARTX4090" --quiet --submission_dir=$HOME/scc_gh_action_submissions
         
   build_nvidia:
-      if: github.repository_owner == 'gateoverflow'
+      if: github.repository_owner == 'anandhu-eng'
       runs-on: [ self-hosted, linux, x64, GO-spr]
       strategy:
         fail-fast: false
