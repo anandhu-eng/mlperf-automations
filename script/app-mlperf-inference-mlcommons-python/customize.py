@@ -497,13 +497,13 @@ def get_run_cmd_reference(
 
         if env.get('CM_ACTIVATE_RGAT_IN_MEMORY', '') == "yes":
             cmd += " --in-memory "
-    
+
     elif "llama3" in env['CM_MODEL']:
         env['RUN_DIR'] = os.path.join(
             env['CM_MLPERF_INFERENCE_SOURCE'],
             "language",
             "llama3.1-405b")
-        
+
         cmd = env['CM_PYTHON_BIN_WITH_PATH'] + " main.py " \
             " --scenario " + env['CM_MLPERF_LOADGEN_SCENARIO'] + \
             " --dataset-path " + env['CM_DATASET_LLAMA3_PATH'] + \
@@ -512,7 +512,7 @@ def get_run_cmd_reference(
             " --output-log-dir " + env['CM_MLPERF_OUTPUT_DIR'] + \
             ' --dtype ' + env['CM_MLPERF_MODEL_PRECISION'] + \
             " --model-path " + env['CM_ML_MODEL_LLAMA3_CHECKPOINT_PATH'] + \
-            " --vllm "       
+            " --vllm "
 
     if env.get('CM_NETWORK_LOADGEN', '') in ["lon", "sut"]:
         cmd = cmd + " " + "--network " + env['CM_NETWORK_LOADGEN']
