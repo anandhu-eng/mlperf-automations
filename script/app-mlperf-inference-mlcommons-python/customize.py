@@ -127,7 +127,7 @@ def preprocess(i):
     if 'CM_MLPERF_USER_CONF' in env:
         user_conf_path = env['CM_MLPERF_USER_CONF']
         x = "" if os_info['platform'] == 'windows' else "'"
-        if 'llama2-70b' in env['CM_MODEL'] or "mixtral-8x7b" in env["CM_MODEL"]:
+        if 'llama2-70b' in env['CM_MODEL'] or "mixtral-8x7b" in env["CM_MODEL"] or "llama3" in env["CM_MODEL"] :
             scenario_extra_options += " --user-conf " + x + user_conf_path + x
         else:
             scenario_extra_options += " --user_conf " + x + user_conf_path + x
