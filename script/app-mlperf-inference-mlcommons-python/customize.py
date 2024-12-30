@@ -506,7 +506,7 @@ def get_run_cmd_reference(
 
         if int(env.get('CM_MLPERF_INFERENCE_TP_SIZE', '')) > 1:
             env['VLLM_WORKER_MULTIPROC_METHOD'] = "spawn"
-    
+
         cmd = env['CM_PYTHON_BIN_WITH_PATH'] + " main.py " \
             " --scenario " + env['CM_MLPERF_LOADGEN_SCENARIO'] + \
             " --dataset-path " + env['CM_DATASET_LLAMA3_PATH'] + \
