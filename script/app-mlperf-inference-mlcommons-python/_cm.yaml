@@ -1291,6 +1291,8 @@ variations:
       - tags: get,generic-python-lib,_package.sentencepiece
       - tags: get,generic-python-lib,_package.accelerate
       - tags: get,generic-python-lib,_package.vllm
+        env:
+          CM_GENERIC_PYTHON_PIP_EXTRA: "--upgrade"
       - tags: get,generic-python-lib,_package.pybind11
       - tags: get,generic-python-lib,_package.numpy
 
