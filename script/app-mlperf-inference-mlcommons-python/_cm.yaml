@@ -1295,6 +1295,8 @@ variations:
           CM_GENERIC_PYTHON_PIP_EXTRA: "--upgrade"
       - tags: get,generic-python-lib,_package.pybind11
       - tags: get,generic-python-lib,_package.numpy
+      - tags: get,generic-python-lib,_package.pandas
+        version: 2.2.1
 
   llama3.1-405b,cuda:
     deps:
