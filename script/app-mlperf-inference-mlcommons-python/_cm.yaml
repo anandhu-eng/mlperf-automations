@@ -1282,7 +1282,7 @@ variations:
       CM_MODEL: llama3.1-405b
     adr:
       pytorch:
-        version_max: 2.5.0
+        version_max: 2.5.1
     deps:
       - tags: get,generic-python-lib,_package.torchvision
       - tags: get,generic-python-lib,_package.torchaudio
