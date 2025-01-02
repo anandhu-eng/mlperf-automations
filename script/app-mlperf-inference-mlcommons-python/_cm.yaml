@@ -1299,7 +1299,6 @@ variations:
       - tags: get,generic-python-lib,_package.pybind11
       - tags: get,generic-python-lib,_package.numpy
         version_max: 2.2.1
-      - tags: get,generic-python-lib,_package.numpy==1.26.4
       - tags: get,generic-python-lib,_package.pandas
         version_max: 2.2.1
 
