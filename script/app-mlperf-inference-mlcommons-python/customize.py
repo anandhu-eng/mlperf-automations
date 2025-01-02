@@ -518,6 +518,9 @@ def get_run_cmd_reference(
             " --tensor-parallel-size " + env['CM_MLPERF_INFERENCE_TP_SIZE'] + \
             " --vllm "
 
+        if env.get('CM_MLPERF_INFERENCE_NUM_WORKERS', '') != '':
+            cmd += f" --num-workers {env['CM_MLPERF_INFERENCE_NUM_WORKERS']}"
+            
         cmd = cmd.replace("--count", "--total-sample-count")
         cmd = cmd.replace("--max-batchsize", "--batch-size")
 
