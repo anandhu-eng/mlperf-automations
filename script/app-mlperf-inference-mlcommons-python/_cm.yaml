@@ -1284,6 +1284,8 @@ variations:
       pytorch:
         version_max: 2.5.1
     deps:
+      - tags: get,generic-python-lib,_package.numpy
+        version_max: 2.2.1
       - tags: get,generic-python-lib,_package.torchvision
       - tags: get,generic-python-lib,_package.torchaudio
       - tags: get,generic-python-lib,_package.transformers
@@ -1297,8 +1299,6 @@ variations:
         env:
           CM_GENERIC_PYTHON_PIP_EXTRA: "--upgrade"
       - tags: get,generic-python-lib,_package.pybind11
-      - tags: get,generic-python-lib,_package.numpy
-        version_max: 2.2.1
       - tags: get,generic-python-lib,_package.pandas
         version_max: 2.2.1
 
