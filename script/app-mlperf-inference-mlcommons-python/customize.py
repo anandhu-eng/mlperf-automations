@@ -515,6 +515,7 @@ def get_run_cmd_reference(
             " --output-log-dir " + env['CM_MLPERF_OUTPUT_DIR'] + \
             ' --dtype ' + env['CM_MLPERF_MODEL_PRECISION'] + \
             " --model-path " + env['CM_ML_MODEL_LLAMA3_CHECKPOINT_PATH'] + \
+            " --tensor-parallel-size " + env['CM_MLPERF_INFERENCE_TP_SIZE'] + \
             " --vllm "
 
         cmd = cmd.replace("--count", "--total-sample-count")
