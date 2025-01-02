@@ -466,7 +466,7 @@ input_description:
     - mobilenet
     - efficientnet
     - rgat
-    - llama3.1-405b
+    - llama3_1-405b
     default: resnet50
     desc: MLPerf model
     sort: 200
