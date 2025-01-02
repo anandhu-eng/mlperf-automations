@@ -68,7 +68,7 @@ def preprocess(i):
             str(env['CM_MLPERF_LOADGEN_BATCH_SIZE'])
 
     if env.get('CM_MLPERF_LOADGEN_QUERY_COUNT', '') != '' and not env.get('CM_TMP_IGNORE_MLPERF_QUERY_COUNT', False) and (
-            env['CM_MLPERF_LOADGEN_MODE'] == 'accuracy' or 'gptj' in env['CM_MODEL'] or 'llama2' in env['CM_MODEL'] or 'mixtral' in env['CM_MODEL']) and env.get('CM_MLPERF_RUN_STYLE', '') != "valid":
+            env['CM_MLPERF_LOADGEN_MODE'] == 'accuracy' or 'gptj' in env['CM_MODEL'] or 'llama2' in env['CM_MODEL'] or 'mixtral' in env['CM_MODEL'] or 'llama3' in env['CM_MODEL']) and env.get('CM_MLPERF_RUN_STYLE', '') != "valid":
         env['CM_MLPERF_LOADGEN_EXTRA_OPTIONS'] += " --count " + \
             env['CM_MLPERF_LOADGEN_QUERY_COUNT']
 
@@ -516,6 +516,8 @@ def get_run_cmd_reference(
             ' --dtype ' + env['CM_MLPERF_MODEL_PRECISION'] + \
             " --model-path " + env['CM_ML_MODEL_LLAMA3_CHECKPOINT_PATH'] + \
             " --vllm "
+
+        cmd = cmd.replace("--count", "--total-sample-count")
 
     if env.get('CM_NETWORK_LOADGEN', '') in ["lon", "sut"]:
         cmd = cmd + " " + "--network " + env['CM_NETWORK_LOADGEN']
