@@ -519,6 +519,7 @@ def get_run_cmd_reference(
             " --vllm "
 
         cmd = cmd.replace("--count", "--total-sample-count")
+        cmd = cmd.replace("--max-batchsize", "--batch-size")
 
     if env.get('CM_NETWORK_LOADGEN', '') in ["lon", "sut"]:
         cmd = cmd + " " + "--network " + env['CM_NETWORK_LOADGEN']
