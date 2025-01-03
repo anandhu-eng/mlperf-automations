@@ -221,6 +221,8 @@ variations:
         tags: _int32
       cnndm-accuracy-script:
         tags: _int32
+      llama3_1-405b-accuracy-script:
+        tags: _int32
     env:
       CM_MLPERF_PYTHON: 'yes'
       CM_MLPERF_IMPLEMENTATION: mlcommons_python
@@ -450,8 +452,6 @@ variations:
       librispeech-accuracy-script:
         tags: _int8
       cnndm-accuracy-script:
-        tags: _int32
-      llama3_1-405b-accuracy-script:
         tags: _int32
     env:
       BUILD_TRTLLM: 0
