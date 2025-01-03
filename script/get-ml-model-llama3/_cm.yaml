@@ -9,10 +9,7 @@ new_env_keys:
 - CM_ML_MODEL_*
 - LLAMA3_CHECKPOINT_PATH
 prehook_deps:
-- enable_if_env:
-    CM_TMP_REQUIRE_DOWNLOAD:
-    - 'yes'
-  env: {}
+- env: {}
   extra_cache_tags: llama3,llama-3
   force_env_keys:
   - CM_GIT_CHECKOUT_FOLDER
