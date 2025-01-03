@@ -7,12 +7,14 @@ def preprocess(i):
     os_info = i['os_info']
     env = i['env']
 
-    path = env.get('LLAMA3_CHECKPOINT_PATH', '').strip()
-    if path == '' or not os.path.exists(path):
-        env['CM_TMP_REQUIRE_DOWNLOAD'] = 'yes'
-        if env.get('CM_LLAMA3_MODEL_DOWNLOAD_PATH','') == '':
-            env['CM_LLAMA3_MODEL_DOWNLOAD_PATH'] = os.getcwd()
+    path = env.get('CM_LLAMA3_MODEL_DOWNLOAD_PATH', '').strip()
 
+    if path != "":
+        os.makedirs(path, exist_ok=True)
+        env['CM_ML_MODEL_LLAMA3_DOWNLOAD_PATH'] = path
+    else:
+        env['CM_ML_MODEL_LLAMA3_DOWNLOAD_PATH'] = os.getcwd()
+        
     return {'return': 0}
 
 
