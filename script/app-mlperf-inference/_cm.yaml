@@ -1701,6 +1701,8 @@ variations:
         tags: _mlcommons
       intel-harness:
         tags: _v4.1
+      inference-src:
+         version: r5.0
     default_env:
       CM_SKIP_SYS_UTILS: 'yes'
       CM_REGENERATE_MEASURE_FILES: 'yes'
