@@ -13,9 +13,9 @@ def preprocess(i):
         os.makedirs(path, exist_ok=True)
         env['CM_GIT_CHECKOUT_FOLDER'] = os.path.join(
             path, env['CM_ML_MODEL_NAME'])
-        
+
     env['CM_TMP_REQUIRE_DOWNLOAD'] = 'yes'
-    
+
     return {'return': 0}
 
 
