@@ -14,7 +14,7 @@ def preprocess(i):
         env['CM_ML_MODEL_LLAMA3_DOWNLOAD_PATH'] = path
     else:
         env['CM_ML_MODEL_LLAMA3_DOWNLOAD_PATH'] = os.getcwd()
-        
+
     return {'return': 0}
 
 
