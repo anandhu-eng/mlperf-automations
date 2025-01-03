@@ -451,6 +451,8 @@ variations:
         tags: _int8
       cnndm-accuracy-script:
         tags: _int32
+      llama3_1-405b-accuracy-script:
+        tags: _int32
     env:
       BUILD_TRTLLM: 0
       CM_MLPERF_IMPLEMENTATION: nvidia
@@ -808,7 +810,7 @@ variations:
       names:
       - mlperf-accuracy-script
       - llama3_1-405b-accuracy-script
-      # tags: run,accuracy,mlperf,_llama3
+      tags: run,accuracy,mlperf,_dataset_llama3
 
   sdxl:
     group:
