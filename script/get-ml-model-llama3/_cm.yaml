@@ -85,4 +85,4 @@ docker:
   os_version: '22.04'
   docker_input_mapping:
     outdirname: CM_OUTDIRNAME
-    path: CM_LLAMA3_MODEL_DOWNLOAD_PATH
+    path: CM_ML_MODEL_LLAMA3_DOWNLOAD_PATH
