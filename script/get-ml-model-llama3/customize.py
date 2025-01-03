@@ -7,7 +7,7 @@ def preprocess(i):
     os_info = i['os_info']
     env = i['env']
 
-    path = env.get('CM_LLAMA3_MODEL_DOWNLOAD_PATH', '').strip()
+    path = env.get('CM_ML_MODEL_LLAMA3_DOWNLOAD_PATH', '').strip()
 
     if path != "":
         os.makedirs(path, exist_ok=True)
