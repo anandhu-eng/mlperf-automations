@@ -1152,6 +1152,9 @@ variations:
     docker:
       deps:
       - tags: get,ml-model,gptj,raw
+        enable_if_env:
+          MLC_MLPERF_MODEL_DOWNLOAD_TO_HOST:
+          - "yes"
     env:
       MLC_MLPERF_MODEL_EQUAL_ISSUE_MODE: 'yes'
     posthook_deps:
