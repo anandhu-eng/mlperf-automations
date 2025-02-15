@@ -706,6 +706,15 @@ variations:
         names:
           - imagenet-original
           - dataset-original
+      - tags: get,ml-model,image-classification,resnet50
+        names:
+          - ml-model
+          - resnet50-model
+        enable_if_env:
+          MLC_MODEL:
+            - resnet50
+          ML_MLPERF_USE_MODEL_FROM_HOST:
+            - 'yes'
 
   retinanet:
     group:
