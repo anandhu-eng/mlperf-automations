@@ -27,6 +27,8 @@ def postprocess(i):
         env['MLC_ML_MODEL_FILE_WITH_PATH'])
     env['MLC_GET_DEPENDENT_CACHED_PATH'] = env['MLC_ML_MODEL_FILE_WITH_PATH']
 
+    env['MLC_ML_MODEL_RESNET50_PATH'] = env['MLC_ML_MODEL_FILE_WITH_PATH']
+    
     env['MLC_DOWNLOAD_PATH'] = os.path.dirname(
         env['MLC_ML_MODEL_FILE_WITH_PATH'])
 
