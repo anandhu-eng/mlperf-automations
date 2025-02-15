@@ -1967,6 +1967,7 @@ docker:
    - "${{ MLC_DATASET_WAYMO_PATH }}:${{ MLC_DATASET_WAYMO_PATH }}"
    - "${{ MLC_ML_MODEL_POINT_PILLARS_PATH }}:${{ MLC_ML_MODEL_POINT_PILLARS_PATH }}"
    - "${{ MLC_ML_MODEL_DPLAB_RESNET50_PATH }}:${{ MLC_ML_MODEL_DPLAB_RESNET50_PATH }}" 
+   - "${{ MLC_ML_MODEL_RESNET50_PATH }}:${{ MLC_ML_MODEL_RESNET50_PATH }}"
   skip_run_cmd: 'no'
   shm_size: '32gb'
   interactive: True
