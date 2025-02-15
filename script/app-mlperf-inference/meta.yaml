@@ -27,7 +27,7 @@ default_env:
   MLC_MLPERF_RUN_STYLE: test
   MLC_TEST_QUERY_COUNT: '10'
   MLC_MLPERF_QUANTIZATION: off
-  MLC_GET_PLATFORM_DETAILS: yes
+  MLC_GET_PLATFORM_DETAILS: 'yes'
 
 env:
   MLC_MLPERF_PRINT_SUMMARY: "no"
@@ -123,7 +123,7 @@ posthook_deps:
   - tags: get,platform,details
     enable_if_any_env:
       MLC_GET_PLATFORM_DETAILS:
-        - yes
+        - 'yes'
     skip_if_env:
       MLC_MLPERF_LOADGEN_MODE:
       - accuracy
