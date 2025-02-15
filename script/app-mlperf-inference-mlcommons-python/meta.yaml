@@ -340,6 +340,8 @@ deps:
     skip_if_env:
       MLC_MLPERF_CUSTOM_MODEL_PATH:
         - "on"
+      ML_MLPERF_USE_MODEL_FROM_HOST:
+        - "on"
 
   ## RetinaNet
   - tags: get,ml-model,object-detection,retinanet
