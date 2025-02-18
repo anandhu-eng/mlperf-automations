@@ -29,13 +29,13 @@ def preprocess(i):
             # if podman is also not found, install docker in the system
             file_name = 'podman.exe' if os_info['platform'] == 'windows' else 'podman'
             r = i['automation'].find_artifact({'file_name': file_name,
-                                           'env': env,
-                                           'os_info': os_info,
-                                           'default_path_env_key': 'PATH',
-                                           'detect_version': True,
-                                           'env_path_key': 'MLC_DOCKER_BIN_WITH_PATH',
-                                           'run_script_input': i['run_script_input'],
-                                           'recursion_spaces': recursion_spaces})
+                                               'env': env,
+                                               'os_info': os_info,
+                                               'default_path_env_key': 'PATH',
+                                               'detect_version': True,
+                                               'env_path_key': 'MLC_DOCKER_BIN_WITH_PATH',
+                                               'run_script_input': i['run_script_input'],
+                                               'recursion_spaces': recursion_spaces})
             if r['return'] > 0:
                 if r['return'] == 16:
                     run_file_name = "install"
