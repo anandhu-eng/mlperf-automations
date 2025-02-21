@@ -23,7 +23,7 @@ def preprocess(i):
         env['MLC_DOCKER_RUN_SCRIPT_TAGS'] = "run,docker,container"
         MLC_RUN_CMD = "mlc version"
     else:
-        MLC_RUN_CMD = "mlcr --tags=" + \
+        MLC_RUN_CMD = "mlcr " + \
             env['MLC_DOCKER_RUN_SCRIPT_TAGS'] + ' --quiet'
 
     r = mlc.access({'action': 'search',
@@ -88,6 +88,8 @@ def preprocess(i):
         if existing_container_id:
             print(
                 f"""Not using existing container {existing_container_id} as env['MLC_DOCKER_REUSE_EXISTING_CONTAINER'] is not set""")
+        else:
+            print("No existing container")
         if env.get('MLC_DOCKER_CONTAINER_ID', '') != '':
             del (env['MLC_DOCKER_CONTAINER_ID'])  # not valid ID
 
@@ -120,7 +122,6 @@ def preprocess(i):
 
     #    elif recreate_image == "yes":
     #        env['MLC_DOCKER_IMAGE_RECREATE'] = "no"
-
     return {'return': 0}
 
 
