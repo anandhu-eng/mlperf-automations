@@ -2,11 +2,10 @@ name: MLPerf inference ResNet50 - closed
 
 on:
   schedule:
-    - cron: "35 10 * * *"
+    - cron: "10 11 * * *"
 
 jobs:
   mlc-run-with-results-upload:
-    if: github.repository_owner == 'anandhu-eng'
     runs-on: ${{ matrix.os }}
     env:
       MLC_INDEX: "on"
