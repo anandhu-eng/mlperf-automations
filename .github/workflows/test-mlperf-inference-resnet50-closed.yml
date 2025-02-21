@@ -2,7 +2,7 @@ name: MLPerf inference ResNet50 - closed
 
 on:
   schedule:
-    - cron: "30 05 * * *"
+    - cron: "50 07 * * *"
 
 jobs:
   mlc-run-with-results-upload:
