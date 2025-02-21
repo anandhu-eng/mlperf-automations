@@ -1,6 +1,9 @@
 name: MLPerf inference ResNet50 - closed
 
 on:
+  push:
+    paths:
+      - ".github/workflows/**"
   schedule:
     - cron: "10 11 * * *"
 
