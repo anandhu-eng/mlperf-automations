@@ -57,7 +57,7 @@
 
 ### **👥 May 2024: Team Expansion**
 
-- **Anandhu Sooraj** joined MLCommons to collaborate with **Arjun Suresh** on CM development.
+- **Anandhu Sooraj** joined MLCommons to collaborate with **Arjun Suresh** on CM development. Yo! its me
 
 ---
 
