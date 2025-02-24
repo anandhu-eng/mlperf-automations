@@ -887,6 +887,11 @@ variations:
       MLC_MLPERF_VISION_DATASET_OPTION: imagenet_pytorch
       MLC_ML_MODEL_STARTING_WEIGHTS_FILENAME: <<<MLC_MLPERF_CUSTOM_MODEL_PATH>>>
 
+  deepsparse,bert:
+    add_deps_recursive:
+      python3:
+        version_max: "3.9.11" 
+
 
   tvm-onnx:
     group: framework
