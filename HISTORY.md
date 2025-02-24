@@ -1,4 +1,4 @@
-## Timeline of CM developmentsyes 
+## Timeline of CM developments
 
 ### **🚀 2022: Foundation and Early Developments**
 
