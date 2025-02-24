@@ -8,7 +8,7 @@
 
 ---
 
-### **🛠️ July–September 2022: MLPerf Integration and First Submission**
+### **🛠️ July–September 2022: MLPerf Integration and First Submission**(this was really awesome)
 
 - Arjun completed the development of the **MLPerf Inference Script** within CM.
 - OctoML achieved **first MLPerf Inference submission (v2.1)** using **CM Automation** ([progress here](https://github.com/octoml/ck/commits/master/?since=2022-06-01&until=2022-09-30)).
