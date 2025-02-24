@@ -20,7 +20,10 @@ def preprocess(i):
     # check the file_path is absolute or relative
     # if it is relative, convert to absolute
     if not os.path.isabs(file_path):
-        file_path = os.path.abspath(os.path.join(env['MLC_TMP_CURRENT_PATH'], file_path))
+        file_path = os.path.abspath(
+            os.path.join(
+                env['MLC_TMP_CURRENT_PATH'],
+                file_path))
 
     print(file_path)
     import time
