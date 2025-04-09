@@ -11,6 +11,7 @@ def preprocess(i):
     env = i['env']
     meta = i['meta']
     quiet = (env.get('MLC_QUIET', False) == 'yes')
+    logger = automation.action_object.logger
 
     # Check if path is there to detect existing data set
     detected = False
@@ -37,8 +38,8 @@ def preprocess(i):
             return {
                 'return': 1, 'error': 'COCO dataset is not detected in "{}"'.format(path)}
 
-        print('')
-        print('Detected COCO dataset {} {}'.format(tp, ver))
+        logger.info('')
+        logger.info('Detected COCO dataset {} {}'.format(tp, ver))
 
         env['MLC_DATASET_COCO_DETECTED'] = 'yes'
         env['MLC_DATASET_COCO_PATH'] = path
@@ -141,9 +142,9 @@ def preprocess(i):
         env['MLC_DATASET_COCO_MD5SUM_ANN'] = md5sum_ann
 
     if not detected:
-        print('')
-        print('URL for data: {}'.format(url_data_full))
-        print('URL for annotations: {}'.format(url_ann_full))
+        logger.info('')
+        logger.info('URL for data: {}'.format(url_data_full))
+        logger.info('URL for annotations: {}'.format(url_ann_full))
 
     # Add version and type to tags
     extra_cache_tags = []
@@ -157,8 +158,9 @@ def preprocess(i):
 def postprocess(i):
 
     os_info = i['os_info']
-
     env = i['env']
+    automation = i['automation']
+    logger = automation.action_object.logger
 
     tp_ver = env['MLC_DATASET_COCO_TYPE_AND_VERSION']
 
@@ -180,9 +182,9 @@ def postprocess(i):
         path_data = env['MLC_DATASET_COCO_DATA_PATH']
         path_ann = env['MLC_DATASET_COCO_ANNOTATIONS_PATH']
 
-        print('')
-        print(path_all)
-        print('')
+        logger.info('')
+        logger.info(path_all)
+        logger.info('')
 
         path_data_full = os.path.join(path_data, tp_ver)
         path_ann_full = os.path.join(path_ann, 'annotations')
@@ -203,7 +205,7 @@ def postprocess(i):
             command2 = '  ln -s ' + path_ann_full + ' annotations'
 
         for command in [command1, command2]:
-            print(command)
+            logger.info(command)
             os.system(command)
 
     env['MLC_DATASET_COCO_PATH'] = path_all

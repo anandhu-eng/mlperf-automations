@@ -20,6 +20,7 @@ def preprocess(i):
     state = i['state']
     script_path = i['run_script_input']['path']
     mlc = i['automation'].action_object
+    logger = mlc.logger
 
     if env.get('MLC_RUN_DOCKER_CONTAINER', '') == "yes":
         return {'return': 0}
@@ -77,7 +78,7 @@ def preprocess(i):
         env['MLC_RUN_MLPERF_ACCURACY'] = "on"
 
     if env.get('MLC_MLPERF_INFERENCE_SOURCE', '') != '':
-        print(
+        logger.info(
             "Using MLCommons Inference source from " +
             env['MLC_MLPERF_INFERENCE_SOURCE'])
 
@@ -190,15 +191,14 @@ def preprocess(i):
     if clean:
         path_to_clean = output_dir
 
-        print('=========================================================')
-        print('Cleaning results in {}'.format(path_to_clean))
+        logger.info('=========================================================')
+        logger.info('Cleaning results in {}'.format(path_to_clean))
         if os.path.exists(path_to_clean):
             shutil.rmtree(path_to_clean)
 
-        print('=========================================================')
+        logger.info('=========================================================')
 
-    if str(env.get('MLC_MLPERF_USE_DOCKER', '')
-           ).lower() in ["1", "true", "yes"]:
+    if is_true(str(env.get('MLC_MLPERF_USE_DOCKER', ''))):
         action = "docker"
         del (env['OUTPUT_BASE_DIR'])
         state = {}
@@ -242,7 +242,7 @@ def preprocess(i):
                         "MLC_TMP_"):
                     del env_copy[key]
 
-            print(f"\nRunning loadgen scenario: {scenario} and mode: {mode}")
+            logger.info(f"\nRunning loadgen scenario: {scenario} and mode: {mode}")
             ii = {'action': action, 'automation': 'script', 'tags': scenario_tags, 'quiet': 'true',
                   'env': env_copy, 'input': inp, 'state': state, 'add_deps': copy.deepcopy(add_deps), 'add_deps_recursive':
                   copy.deepcopy(add_deps_recursive), 'ad': ad, 'adr': copy.deepcopy(adr), 'v': verbose, 'print_env': print_env, 'print_deps': print_deps, 'dump_version_info': dump_version_info}
@@ -258,7 +258,7 @@ def preprocess(i):
                 return {'return': 0}
 
             if env_copy.get('MLC_OUTPUT_PREDICTIONS_PATH'):
-                print(
+                logger.info(
                     f"\nOutput predictions can be seen by opening the images inside {env_copy['MLC_OUTPUT_PREDICTIONS_PATH']}\n")
 
             if state.get('docker', {}):
@@ -286,19 +286,19 @@ def preprocess(i):
                     del (state['docker'])
 
     if state.get("mlc-mlperf-inference-results"):
-        # print(state["mlc-mlperf-inference-results"])
+        # logger.debug(state["mlc-mlperf-inference-results"])
         for sut in state["mlc-mlperf-inference-results"]:  # only one sut will be there
             # Better to do this in a stand alone CM script with proper deps but
             # currently we manage this by modifying the sys path of the python
             # executing CM
             import mlperf_utils  # noqa
 
-            print(sut)
+            logger.info(sut)
             result_table, headers = mlperf_utils.get_result_table(
                 state["mlc-mlperf-inference-results"][sut])
-            print(tabulate(result_table, headers=headers, tablefmt="pretty"))
+            logger.info(tabulate(result_table, headers=headers, tablefmt="pretty"))
 
-            print(
+            logger.info(
                 f"\nThe MLPerf inference results are stored at {output_dir}\n")
 
     return {'return': 0}
@@ -331,7 +331,7 @@ def get_valid_scenarios(model, category, mlperf_version, mlperf_path):
     valid_scenarios = config[mlperf_version]["required-scenarios-" +
                                              category][internal_model_name]
 
-    print(
+    logger.info(
         "Valid Scenarios for " +
         model +
         " in " +
@@ -348,18 +348,20 @@ def postprocess(i):
 
     env = i['env']
     state = i['state']
+    automation = i['automation']
+    logger = automation.action_object.logger
 
     if env.get('MLC_MLPERF_IMPLEMENTATION', '') == 'reference':
         x1 = env.get('MLC_MLPERF_INFERENCE_SOURCE', '')
         x2 = env.get('MLC_MLPERF_INFERENCE_CONF_PATH', '')
 
         if x1 != '' and x2 != '':
-            print('')
-            print(
+            logger.info('')
+            logger.info(
                 'Path to the MLPerf inference benchmark reference sources: {}'.format(x1))
-            print(
+            logger.info(
                 'Path to the MLPerf inference reference configuration file: {}'.format(x2))
-            print('')
+            logger.info('')
 
     return {'return': 0}
 

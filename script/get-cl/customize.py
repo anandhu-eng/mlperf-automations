@@ -14,6 +14,7 @@ def preprocess(i):
     recursion_spaces = i['recursion_spaces']
 
     automation = i['automation']
+    logger = automation.action_object.logger
 
     file_name = 'cl.exe'
 
@@ -36,7 +37,7 @@ def preprocess(i):
         if env.get('MLC_INPUT', '').strip() == '' and env.get(
                 'MLC_TMP_PATH', '').strip() == '':
 
-            print(
+            logger.info(
                 i['recursion_spaces'] +
                 '    Starting deep search for {} - it may take some time ...'.format(file_name))
 
@@ -114,6 +115,9 @@ def preprocess(i):
 
 
 def detect_version(i):
+    automation = i['automation']
+    logger = automation.action_object.logger
+
     r = i['automation'].parse_version({'match_text': r'Version\s*([\d.]+)',
                                        'group_number': 1,
                                        'env_key': 'MLC_CL_VERSION',
@@ -123,7 +127,7 @@ def detect_version(i):
 
     version = r['version']
 
-    print(i['recursion_spaces'] + '    Detected version: {}'.format(version))
+    logger.info(i['recursion_spaces'] + '    Detected version: {}'.format(version))
 
     return {'return': 0, 'version': version}
 

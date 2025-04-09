@@ -10,6 +10,9 @@ def preprocess(i):
 
     recursion_spaces = i['recursion_spaces']
 
+    automation = i['automation']
+    logger = automation.action_object.logger
+
     file_name = 'aws.exe' if os_info['platform'] == 'windows' else 'aws'
     env['FILE_NAME'] = file_name
     if 'MLC_AWS_BIN_WITH_PATH' not in env:
@@ -32,6 +35,9 @@ def preprocess(i):
 
 
 def detect_version(i):
+    automation = i['automation']
+    logger = automation.action_object.logger
+
     r = i['automation'].parse_version({'match_text': r'aws-cli/([\d.]+)\s',
                                        'group_number': 1,
                                        'env_key': 'MLC_AWS_VERSION',
@@ -41,7 +47,7 @@ def detect_version(i):
 
     version = r['version']
 
-    print(i['recursion_spaces'] + '    Detected version: {}'.format(version))
+    logger.info(i['recursion_spaces'] + '    Detected version: {}'.format(version))
     return {'return': 0, 'version': version}
 
 

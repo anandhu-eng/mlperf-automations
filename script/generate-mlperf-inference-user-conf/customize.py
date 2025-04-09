@@ -14,6 +14,9 @@ def preprocess(i):
     state = i['state']
     script_path = i['run_script_input']['path']
 
+    automation = i['automation']
+    logger = automation.action_object.logger
+
     rerun = True if env.get("MLC_RERUN", "") != '' else False
 
     env['MLC_MLPERF_SKIP_RUN'] = env.get('MLC_MLPERF_SKIP_RUN', "no")
@@ -31,7 +34,7 @@ def preprocess(i):
         env['MLC_MLPERF_LOADGEN_SCENARIO'] = "Offline"
 
     if 'MLC_MLPERF_LOADGEN_MODE' not in env:
-        print("\nNo mode given. Using accuracy as default\n")
+        logger.info("\nNo mode given. Using accuracy as default\n")
         env['MLC_MLPERF_LOADGEN_MODE'] = "accuracy"
 
     if env.get('OUTPUT_BASE_DIR', '') == '':
@@ -45,7 +48,7 @@ def preprocess(i):
         else:
             env['MLC_NUM_THREADS'] = env.get('MLC_HOST_CPU_TOTAL_CORES', '1')
 
-    print("Using MLCommons Inference source from '" +
+    logger.info("Using MLCommons Inference source from '" +
           env['MLC_MLPERF_INFERENCE_SOURCE'] + "'")
 
     if 'MLC_MLPERF_CONF' not in env:
@@ -126,29 +129,29 @@ def preprocess(i):
         conf[metric] = value
     else:
         if metric in conf:
-            print(
+            logger.info(
                 "Original configuration value {} {}".format(
                     conf[metric], metric))
             metric_value = str(
                 float(
                     conf[metric]) *
                 tolerance)  # some tolerance
-            print(
+            logger.info(
                 "Adjusted configuration value {} {}".format(
                     metric_value, metric))
         else:
             # if env.get("MLC_MLPERF_FIND_PERFORMANCE_MODE", '') == "yes":
             if metric == "target_qps":
                 if env.get("MLC_MLPERF_FIND_PERFORMANCE_MODE", '') == "yes":
-                    print("In find performance mode: using 1 as target_qps")
+                    logger.info("In find performance mode: using 1 as target_qps")
                 else:
-                    print("No target_qps specified. Using 1 as target_qps")
+                    logger.info("No target_qps specified. Using 1 as target_qps")
                 conf[metric] = 1
             if metric == "target_latency":
                 if env.get("MLC_MLPERF_FIND_PERFORMANCE_MODE", '') == "yes":
-                    print("In find performance mode: using 0.5ms as target_latency")
+                    logger.info("In find performance mode: using 0.5ms as target_latency")
                 else:
-                    print("No target_latency specified. Using default")
+                    logger.info("No target_latency specified. Using default")
                 if env.get('MLC_MLPERF_USE_MAX_DURATION', 'yes').lower() in ["no", "false", "0"] or env.get(
                         'MLC_MLPERF_MODEL_EQUAL_ISSUE_MODE', 'no').lower() in ["yes", "1", "true"]:
                     # Total number of queries needed is a multiple of dataset
@@ -406,14 +409,14 @@ def preprocess(i):
 
     if not run_exists or rerun:
 
-        print("Output Dir: '" + OUTPUT_DIR + "'")
-        print(user_conf)
+        logger.info("Output Dir: '" + OUTPUT_DIR + "'")
+        logger.info(user_conf)
         if env.get('MLC_MLPERF_POWER', '') == "yes" and os.path.exists(
                 env.get('MLC_MLPERF_POWER_LOG_DIR', '')):
             shutil.rmtree(env['MLC_MLPERF_POWER_LOG_DIR'])
     else:
         if not env.get('MLC_MLPERF_COMPLIANCE_RUN_POSTPONED', False):
-            print("Run files exist, skipping run...\n")
+            logger.info("Run files exist, skipping run...\n")
         env['MLC_MLPERF_SKIP_RUN'] = "yes"
 
     if not run_exists or rerun or not measure_files_exist(OUTPUT_DIR,
@@ -431,7 +434,7 @@ def preprocess(i):
             env['MLC_MLPERF_USER_CONF'] = os.path.join(
                 os.path.dirname(user_conf_path), key + ".conf")  # user_conf_path
     else:
-        print(
+        logger.info(
             f"Measure files exist at {OUTPUT_DIR}. Skipping regeneration...\n")
         env['MLC_MLPERF_USER_CONF'] = ''
 
@@ -518,7 +521,7 @@ def run_files_exist(mode, OUTPUT_DIR, run_files, env):
         else:
             cmd = f"{env['MLC_PYTHON_BIN_WITH_PATH']}  {SCRIPT_PATH}  -r {RESULT_DIR} -c  {COMPLIANCE_DIR}  -o  {OUTPUT_DIR}"
 
-        print(cmd)
+        logger.info(cmd)
         os.system(cmd)
 
         is_valid = checker.check_compliance_perf_dir(COMPLIANCE_DIR)

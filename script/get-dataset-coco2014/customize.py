@@ -6,8 +6,10 @@ import shutil
 def preprocess(i):
 
     env = i['env']
+    automation = i['automation']
+    logger = automation.action_object.logger
 
-    print("Using MLCommons Inference source from '" +
+    logger.info("Using MLCommons Inference source from '" +
           env['MLC_MLPERF_INFERENCE_SOURCE'] + "'")
 
     run_dir = os.path.join(
@@ -22,10 +24,14 @@ def preprocess(i):
 
 def postprocess(i):
     env = i['env']
+    automation = i['automation']
+    logger = automation.action_object.logger
+
     if env.get('MLC_GENERATE_SAMPLE_ID', '') == "yes":
         env['MLC_COCO2014_SAMPLE_ID_PATH'] = os.path.join(
             os.getcwd(), 'sample_ids.txt')
-        print(env['MLC_COCO2014_SAMPLE_ID_PATH'])
+        logger.info(f"Sample IDs will be saved to {env['MLC_COCO2014_SAMPLE_ID_PATH']}")
+
     if env.get('MLC_DATASET_CALIBRATION', '') == "no":
         env['MLC_DATASET_PATH_ROOT'] = os.getcwd()
         # env['MLC_DATASET_PATH'] = os.path.join(os.getcwd(), 'install', 'validation', 'data')
@@ -33,8 +39,10 @@ def postprocess(i):
             os.getcwd(), 'captions')
         env['MLC_DATASET_LATENTS_DIR_PATH'] = os.path.join(
             os.getcwd(), 'latents')
+        logger.info(f"Dataset paths set: root={env['MLC_DATASET_PATH_ROOT']}, captions={env['MLC_DATASET_CAPTIONS_DIR_PATH']}, latents={env['MLC_DATASET_LATENTS_DIR_PATH']}")
     else:
         env['MLC_CALIBRATION_DATASET_PATH'] = os.path.join(
             os.getcwd(), 'calibration', 'data')
+        logger.info(f"Calibration dataset path set to {env['MLC_CALIBRATION_DATASET_PATH']}")
 
     return {'return': 0}

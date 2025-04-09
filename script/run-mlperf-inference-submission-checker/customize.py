@@ -9,6 +9,9 @@ def preprocess(i):
     env = i['env']
     q = '"' if os_info['platform'] == 'windows' else "'"
 
+    automation = i['automation']
+    logger = automation.action_object.logger
+
     submission_dir = env.get("MLC_MLPERF_INFERENCE_SUBMISSION_DIR", "")
 
     version = env.get('MLC_MLPERF_SUBMISSION_CHECKER_VERSION', 'v5.0')
@@ -83,7 +86,7 @@ def preprocess(i):
     report_generator_file = os.path.join(env['MLC_MLPERF_INFERENCE_SOURCE'], "tools", "submission",
                                          "generate_final_report.py")
     env['MLC_RUN_CMD'] = CMD
-    print(CMD)
+    logger.info(CMD)
     env['MLC_POST_RUN_CMD'] = env['MLC_PYTHON_BIN_WITH_PATH'] + ' ' + q + report_generator_file + q + ' --input summary.csv ' + \
         x_version + \
         x_submission_repo_name + \
