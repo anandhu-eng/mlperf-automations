@@ -8,6 +8,7 @@ def preprocess(i):
     env = i['env']
     meta = i['meta']
     automation = i['automation']
+    logger = automation.logger
     run_script_input = i['run_script_input']
     pip_version = env.get('MLC_PIP_VERSION', '').strip().split('.')
 
@@ -115,9 +116,9 @@ def preprocess(i):
                     True, 'true', 'yes', 'on']:
                 extra += ' -U'
 
-            print('')
-            print(recursion_spaces + '      Extra PIP CMD: ' + extra)
-            print('')
+            logger.info('')
+            logger.info(recursion_spaces + '      Extra PIP CMD: ' + extra)
+            logger.info('')
 
             env['MLC_GENERIC_PYTHON_PIP_EXTRA'] = extra
 

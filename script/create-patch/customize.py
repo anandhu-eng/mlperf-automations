@@ -12,6 +12,8 @@ def preprocess(i):
 
     automation = i['automation']
 
+    logger = automation.logger
+
     quiet = (env.get('MLC_QUIET', False) == 'yes')
 
     new_dir = env.get('MLC_CREATE_PATCH_NEW', '')
@@ -39,11 +41,11 @@ def preprocess(i):
         x_exclude, old_dir, new_dir)
 
     if not quiet:
-        print('')
-        print('Running command:')
-        print('')
-        print(cmd)
-        print('')
+        logger.info('')
+        logger.info('Running command:')
+        logger.info('')
+        logger.info(cmd)
+        logger.info('')
 
     os.system(cmd)
 

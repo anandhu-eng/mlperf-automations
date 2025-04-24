@@ -15,7 +15,7 @@ def preprocess(i):
 
 def postprocess(i):
     env = i['env']
-
+    logger = i['automation'].logger
     r = i['automation'].parse_version({'match_text': r'huggingface_hub\s*version:\s*([\d.]+)',
                                        'group_number': 1,
                                        'env_key': 'MLC_GITHUBCLI_VERSION',
@@ -25,6 +25,6 @@ def postprocess(i):
 
     version = r['version']
 
-    print(i['recursion_spaces'] + '    Detected version: {}'.format(version))
+    logger.info(i['recursion_spaces'] + '    Detected version: {}'.format(version))
 
     return {'return': 0, 'version': version}

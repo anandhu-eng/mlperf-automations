@@ -12,6 +12,8 @@ def preprocess(i):
 
     automation = i['automation']
 
+    logger = automation.logger
+
     quiet = (env.get('MLC_QUIET', False) == 'yes')
 
     clean_cmd = ''
@@ -36,7 +38,7 @@ def preprocess(i):
     if cache_rm_tags:
         r = mlc_cache.access({'action': 'rm', 'target': 'cache',
                               'tags': cache_rm_tags, 'f': True})
-        print(r)
+        logger.info(r)
         if r['return'] != 0 and r['return'] != 16:  # ignore missing ones
             return r
         if r['return'] == 0:  # cache entry found

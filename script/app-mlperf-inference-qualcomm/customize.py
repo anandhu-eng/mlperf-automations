@@ -7,6 +7,8 @@ def preprocess(i):
 
     os_info = i['os_info']
 
+    logger = i['automation'].logger
+
     if os_info['platform'] == 'windows':
         return {'return': 1, 'error': 'Windows is not supported in this script yet'}
     env = i['env']
@@ -26,7 +28,7 @@ def preprocess(i):
 
     kilt_root = env['MLC_KILT_CHECKOUT_PATH']
 
-    print(f"Harness Root: {kilt_root}")
+    logger.info(f"Harness Root: {kilt_root}")
 
     source_files = []
     env['MLC_SOURCE_FOLDER_PATH'] = env['MLC_KILT_CHECKOUT_PATH']
@@ -160,7 +162,7 @@ def preprocess(i):
                 "master",
                 "QAicInfApi.cpp"))
 
-    print(f"Compiling the source files: {source_files}")
+    logger.info(f"Compiling the source files: {source_files}")
     env['MLC_CXX_SOURCE_FILES'] = ";".join(source_files)
 
     env['+ CXXFLAGS'].append("-std=c++17")

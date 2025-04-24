@@ -21,6 +21,7 @@ def preprocess(i):
 
 
 def postprocess(i):
+    logger = i["automation"].logger
     env = i['env']
     if env.get('MLC_GENERATE_SAMPLE_ID', '') == "yes":
         env['MLC_COCO2014_SAMPLE_ID_PATH'] = os.path.join(

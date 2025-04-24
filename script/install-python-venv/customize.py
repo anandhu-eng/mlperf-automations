@@ -14,6 +14,8 @@ def preprocess(i):
 
     automation = i['automation']
 
+    logger = automation.logger
+
     recursion_spaces = i['recursion_spaces']
 
     # Add extra tags to python
@@ -22,7 +24,7 @@ def preprocess(i):
 
     name = env.get('MLC_NAME', '')
     if not quiet and name == '':
-        print('')
+        logger.info('')
         x = input(
             'Enter some tag to describe this virtual env (mlperf-inf,octoml-bench,etc): ')
         x = x.strip()

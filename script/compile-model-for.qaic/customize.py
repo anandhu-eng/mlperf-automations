@@ -12,6 +12,8 @@ def preprocess(i):
 
     automation = i['automation']
 
+    logger = automation.logger
+
     quiet = (env.get('MLC_QUIET', False) == 'yes')
 
     if env.get('MLC_REGISTER_CACHE', '') == '':
@@ -21,7 +23,7 @@ def preprocess(i):
             return r
         cmd = r['cmd']
 
-        print("Compiling from " + os.getcwd())
+        logger.info("Compiling from " + os.getcwd())
 
         env['MLC_QAIC_MODEL_FINAL_COMPILATION_CMD'] = cmd
 
@@ -38,7 +40,7 @@ def preprocess(i):
             os.path.join(
                 os.getcwd(),
                 "elfs"))
-        print(r)
+        logger.info(r)
 
     return {'return': 0}
 

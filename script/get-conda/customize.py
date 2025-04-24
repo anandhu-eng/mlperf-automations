@@ -12,6 +12,8 @@ def preprocess(i):
 
     recursion_spaces = i['recursion_spaces']
 
+    logger = i['automation'].logger
+
     conda_prefix_name = env.get('MLC_CONDA_PREFIX_NAME', '')
     r = None
     file_name = 'conda.exe' if os_info['platform'] == 'windows' else 'conda'
@@ -48,7 +50,7 @@ def preprocess(i):
                 if env.get('MLC_TMP_FAIL_IF_NOT_FOUND', '').lower() == 'yes':
                     return r
 
-                print(recursion_spaces + '    # {}'.format(r['error']))
+                logger.error(recursion_spaces + '    # {}'.format(r['error']))
 
             # Attempt to run installer
             r = automation.run_native_script(
@@ -83,7 +85,7 @@ def detect_version(i):
 
 def postprocess(i):
     env = i['env']
-
+    logger = i['automation'].logger
     r = detect_version(i)
     if r['return'] > 0:
         return r
@@ -106,6 +108,6 @@ def postprocess(i):
 
     version = r['version']
 
-    print(i['recursion_spaces'] + '    Detected version: {}'.format(version))
+    logger.info(i['recursion_spaces'] + '    Detected version: {}'.format(version))
 
     return {'return': 0, 'version': version}

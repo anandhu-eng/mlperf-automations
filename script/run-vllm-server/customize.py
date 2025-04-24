@@ -13,6 +13,8 @@ def preprocess(i):
 
     automation = i['automation']
 
+    logger = automation.logger
+
     cmd_args = ""
 
     model_name = env.get("MLC_VLLM_SERVER_MODEL_NAME", False)
@@ -428,7 +430,7 @@ def preprocess(i):
         cmd_args += f" --max-log-len {max_log_len}"
 
     cmd = f"{env['MLC_PYTHON_BIN_WITH_PATH']} -m vllm.entrypoints.openai.api_server {cmd_args}"
-    print(cmd)
+    logger.info(f"{cmd}")
 
     env['MLC_VLLM_RUN_CMD'] = cmd
 

@@ -9,7 +9,7 @@ def preprocess(i):
     env = i['env']
 
     recursion_spaces = i['recursion_spaces']
-
+    logger = i['automation'].logger
     file_name = 'gh.exe' if os_info['platform'] == 'windows' else 'gh'
 
     # Will check env['MLC_TMP_PATH'] if comes from installation script
@@ -26,7 +26,7 @@ def preprocess(i):
             if env.get('MLC_TMP_FAIL_IF_NOT_FOUND', '').lower() == 'yes':
                 return r
 
-            print(recursion_spaces + '    # {}'.format(r['error']))
+            logger.error(recursion_spaces + '    # {}'.format(r['error']))
 
             # Attempt to run installer
             r = {
@@ -53,7 +53,8 @@ def postprocess(i):
         return r
 
     version = r['version']
+    logger = i['automation'].logger
 
-    print(i['recursion_spaces'] + '    Detected version: {}'.format(version))
+    logger.info(i['recursion_spaces'] + '    Detected version: {}'.format(version))
 
     return {'return': 0, 'version': version}

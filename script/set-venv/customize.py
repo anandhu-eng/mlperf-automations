@@ -12,6 +12,8 @@ def preprocess(i):
 
     automation = i['automation']
 
+    logger = automation.logger
+
     quiet = (env.get('MLC_QUIET', False) == 'yes')
 
     ############################################################
@@ -48,9 +50,9 @@ def preprocess(i):
 
         cmd = python_path + ' -m venv ' + name + create_dir.format(name)
 
-        print('====================================================================')
+        logger.info('====================================================================')
 
-        print('Creating venv: "{}" ...'.format(cmd))
+        logger.info('Creating venv: "{}" ...'.format(cmd))
         os.system(cmd)
 
     if os.path.isfile(activate_script2):
@@ -85,11 +87,11 @@ def preprocess(i):
             with open(script_file, 'w') as f:
                 f.write(cmd)
 
-        print('====================================================================')
-        print('Please run the following command:')
-        print('')
-        print(xcmd)
-        print('====================================================================')
+        logger.info('====================================================================')
+        logger.info('Please run the following command:')
+        logger.info('')
+        logger.info(f"{xcmd}")
+        logger.info('====================================================================')
 
     return {'return': 0}
 

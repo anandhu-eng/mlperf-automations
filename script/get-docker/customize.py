@@ -45,6 +45,8 @@ def detect_version(i):
     if r['return'] > 0:
         return r
 
+    logger = i['automation'].logger
+    
     version = r['version']
 
     tool = "docker"
@@ -52,7 +54,7 @@ def detect_version(i):
     if "podman" in r['string'].lower():
         tool = "podman"
 
-    print(i['recursion_spaces'] + '    Detected version: {}'.format(version))
+    logger.info(i['recursion_spaces'] + '    Detected version: {}'.format(version))
     return {'return': 0, 'version': version, "tool": tool}
 
 
