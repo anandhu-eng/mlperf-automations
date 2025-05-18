@@ -434,7 +434,14 @@ variations:
     - tags: get,generic-python-lib,_onnx-graphsurgeon
       version: 0.3.27
     - tags: get,generic-python-lib,_package.onnx
+      names:
+        - onnx_lib
       version: 1.13.1
+
+  retinanet,v5.0:
+    adr:
+      onnx_lib:
+        version: 1.17.0
 
   retinanet:
     group: model
